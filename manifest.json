@@ -1,0 +1,13 @@
+{
+	"name": "StudentTV VLC Playlist",
+	"version": "1.0",
+	"description": "Jednym klikom zistiš čo Študentská televízia práve teraz vysiela na VLC",
+	"browser_action": {
+		"default_icon": "stv-logo-128.png",
+		"popup": "StudentTV.sk.html"
+	},
+   "icons": {
+      "128": "stv-logo-128.png"
+   },
+	"permissions": ["http://api.studenttv.sk/vlcplaylist/*"]
+}

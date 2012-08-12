@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+ **
+ * StudentTV VLC Playlist
+ * http://api.studenttv.sk/vlcplaylist/
+ *
+ * Copyright (c) 2011 Cifro Nix (about.me/Cifro)
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/mit-license.php
+ *
+-->
+<html lang="sk">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+	<title>StudentTV VLC Playlist Chrome Extension</title>
+</head>
+<body id="body">
+	<header id="header">
+		<h1><a href="http://StudentTV.sk" target="_blank">StudentTV.sk</a><small>VLC Playlist</small></h1>
+	</header>
+
+	<div id="canvas"></div>
+
+	<footer id="footer">
+		&copy; <a href="http://StudentTV.sk" target="_blank" title="Sme medzi vami... A teraz už aj vo vašom prehliadači :)">Študentská televízia</a> <small id="cifro" title="Google Chrome Extension developed by Cifro"><a href="http://about.me/Cifro" target="_blank">Cifro</a></small>
+	</footer>
+
+
+	<script id="channel-template" type="text/x-jquery-tmpl">
+		<section class="channel">
+			<header class="title">
+				<h2>${title}</h2>
+				{{if !stats.error}}<aside class="viewers" title="Toto sleduje toľko maniakov">${stats.viewers}</aside>{{/if}}
+			</header>
+
+			{{if error}}
+				<div class="tracks-error"><p>${error}</p></div>
+			{{else}}
+			<section class="track now">
+				<aside class="info-text">Práve beží:</aside>
+				<h1>${currentTrack.title}</h1>
+				<div class="utility-bar">
+					<table>
+						<tr>
+							<td class="duration">${formatDuration(currentTrack.duration)}</td>
+							{{if !currentTrack.progress.error}}
+							<td class="progressbar" title="Beží už ${formatDuration(currentTrack.progress.time)}"><span class="progress"><span class="bar" style="width:${currentTrack.progress.percents}%"></span></span></td>
+							{{else}}
+							<td class="progressbar"></td>
+							{{/if}}
+							<td class="imdb"><a href="http://www.csfd.cz/hledat/?q=${currentTrack.title}" target="_blank" title="Vyhľadať hento na ČSFD">ČSFD &raquo;</a></td>
+						</tr>
+					</table>
+				</div>
+			</section>
+
+			<section class="track next">
+				<aside class="info-text">Nasleduje:</aside>
+				<h1 title="Dĺžka: ${formatDuration(nextTrack.duration)}">${nextTrack.title}</h1>
+			</section>
+			{{/if}}
+		</section>
+	</script>
+
+
+	<script id="error-template" type="text/x-jquery-tmpl">
+		<div class="error ${errorClass}">
+			<p>${msg}</p>
+		</div>
+	</script>
+
+	<script id="ads-template" type="text/x-jquery-tmpl">
+		<p><a href="${link}?from=chrome-ext"><img src="${img}?from=chrome-ext" width="320" height="30"></a></p>
+	</script>
+
+	<script src="jquery-1.6.4.min.js"></script>
+	<script src="jquery.tmpl.min.js"></script>
+	<script src="magic.js"></script>
+</body>
+</html
