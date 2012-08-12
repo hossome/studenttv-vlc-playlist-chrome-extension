@@ -1,4 +1,4 @@
-# StudentTV VLC Playlist Google Extension
+# StudentTV VLC Playlist Google Chrome Extension
 by [Cifro Nix](http://cifro.uniquebyte.com), 2011, 2012
 
 ## About
